@@ -2,14 +2,9 @@ import React from 'react'
 
 import { Container, Content, TextDescription, TextPrice, Image, ContentText, ContentPrice } from './styles'
 import {
-    ScrollView,
-    Animated,
-    SafeAreaView,
     StyleSheet,
-    Dimensions,
-    Text,
-    Button,
-    TouchableHighlight,
+ 
+    TouchableOpacity,
 } from "react-native"
 import { lightTheme } from '../../styles/colors';
 
@@ -19,13 +14,15 @@ export default function CardProducts(props) {
         <Container>
 
             {props.cardProducts.map((item, idx) => {
-                idx += 1;
+
                 return (
 
-                    <TouchableHighlight onPress={() => {
-                        props.navigation.navigate('About');
+                    <TouchableOpacity key={item.id} onPress={() => {
+                        props.navigation.navigate('About', {
+                            productId: item.id,
+                        });
                     }}>
-                        <Content key={idx}>
+                        <Content>
                             <Image
 
                                 source={item.posterUrl}
@@ -47,7 +44,7 @@ export default function CardProducts(props) {
                                 </TextPrice>
                             </ContentPrice>
                         </Content>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
 
 
                 );

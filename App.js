@@ -3,7 +3,8 @@ import 'react-native-gesture-handler';
 import Routes from './src/components/navigation/routes'
 import AppLoading from 'expo-app-loading';
 import GeneralStatusBarColor from './src/styles/generalStatusBarColor';
-
+import MyStack from './src/components/navigation/stack'
+import { CartProvider } from './src/components/CartContext';
 import {
   useFonts,
   Roboto_100Thin,
@@ -40,8 +41,9 @@ export default function App() {
   }
   return (
     <>
-      <GeneralStatusBarColor backgroundColor={lightTheme.BACKGROUND.SECONDARY_BACKGROUND_COLOR} barStyle="light-content" />
-      <Routes />
+
+        <GeneralStatusBarColor backgroundColor={lightTheme.BACKGROUND.SECONDARY_BACKGROUND_COLOR} barStyle="light-content" />
+        <MyStack />
     </>
   );
 }

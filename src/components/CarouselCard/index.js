@@ -3,18 +3,12 @@ import React, { Component } from "react"
 import {
   ScrollView,
   Animated,
-  SafeAreaView,
-  ImageBackground,
   Dimensions,
   PixelRatio,
-  View,
   Image
 } from "react-native"
-import { Container } from './styles'
 import { StyleSheet } from 'react-native';
-const OFFSET = 30
-const ITEM_WIDTH = 325
-const ITEM_HEIGHT = 180.44
+
 
 
 //

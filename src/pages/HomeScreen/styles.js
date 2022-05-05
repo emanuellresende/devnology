@@ -58,6 +58,5 @@ justify-content: space-between;
 margin: auto;
 text-align: left;
 width:${widthPercentageToDP('86%')};
-margin-top: 25px;
 
 `;

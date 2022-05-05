@@ -1,6 +1,5 @@
-import { View, Text } from 'react-native'
 import React from 'react'
-import { Container, BoxCircle } from './styles'
+import { Container} from './styles'
 
 import apparel from '../../images/apparel.png'
 import beauty from '../../images/beauty.png'

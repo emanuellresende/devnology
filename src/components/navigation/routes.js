@@ -1,5 +1,4 @@
-import React from 'react'
-import { NavigationContainer } from '@react-navigation/native';
+import React, {useContext} from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MoreScreen from '../../pages/MoreScreen';
 import ProfileScreen from '../../pages/ProfileScreen';
@@ -7,18 +6,16 @@ import CartScreen from '../../pages/CartScreen';
 import SearchScreen from '../../pages/SettingsScreen'
 import { Ionicons } from '@expo/vector-icons'
 import { lightTheme } from '../../styles/colors';
-import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { getBottomSpace } from 'react-native-iphone-x-helper'
-import { createStackNavigator } from '@react-navigation/stack';
 const { Navigator, Screen } = createBottomTabNavigator();
-import MyStack from './stack';
-
+import { CartContext } from '../CartContext';
+import HomeScreen from '../../pages/HomeScreen';
+import { Container, ContainerCircle, ContainerText } from './styles';
 
 export default function Tabs() {
-
+    const { getItemsCount } = useContext(CartContext);
 
     return (
-             <NavigationContainer>
         <Navigator
             screenOptions={({ route }) => ({
                 headerShown: false,
@@ -48,9 +45,13 @@ export default function Tabs() {
 
 
         >
-            <Screen name="Homer" component={MyStack} options={{
+            <Screen name="Home" component={HomeScreen} options={{
                 tabBarIcon: ({ size, focused }) => {
+                
+              
+                
                     return (
+                        
                         <Ionicons
                             name='home-outline'
                             size={size}
@@ -77,13 +78,32 @@ export default function Tabs() {
             <Screen name="Cart" component={CartScreen}
                 options={{
                     tabBarIcon: ({ size, focused }) => {
+                        if(getItemsCount()>=1){
                         return (
+<Container>
                             <Ionicons
                                 name='cart-outline'
                                 size={size}
                                 color={focused ? lightTheme.COLOR.Tertiary_TEXT_COLOR : lightTheme.COLOR.SECONDARY_TEXT_COLOR}
-                            />
+                      />
+                      <ContainerCircle>
+                      <ContainerText>{getItemsCount()}</ContainerText>
+                      </ContainerCircle>
+                      </Container>
                         );
+                        }
+
+                        else{
+                            return (
+                                <Ionicons
+                                    name='cart-outline'
+                                    size={size}
+                                    color={focused ? lightTheme.COLOR.Tertiary_TEXT_COLOR : lightTheme.COLOR.SECONDARY_TEXT_COLOR}
+                                />
+                            );
+                            }
+
+
                     }
                 }}
             />
@@ -118,7 +138,7 @@ export default function Tabs() {
             />
 
         </Navigator>
-        </NavigationContainer>
+   
     );
 }
 

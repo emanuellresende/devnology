@@ -1,28 +1,24 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from '../../pages/HomeScreen';
 import AboutScreen from '../../pages/AboutScreen'
-import Routes from './routes'
-
+import { NavigationContainer } from '@react-navigation/native';
 const Stack = createStackNavigator();
-
-const config = {
-    animation: 'spring',
-    config: {
-        stiffness: 1000,
-        damping: 500,
-        mass: 3,
-        overshootClamping: true,
-        restDisplacementThreshold: 0.01,
-        restSpeedThreshold: 0.01,
-    },
-};
+import Tabs from './routes';
+import { CartProvider } from '../CartContext';
+import CheckOutScreen from '../../pages/CheckOutScreen'
 
 export default function MyStack() {
     return (
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="Home" component={HomeScreen} />
-            <Stack.Screen name="About" component={AboutScreen} />
-        </Stack.Navigator>
+        <CartProvider>
+            <NavigationContainer independent="true">
+                <Stack.Navigator screenOptions={{ headerShown: false }}>
+                    <Stack.Screen name="Start" component={Tabs} />
+                    <Stack.Screen name="About" component={AboutScreen} />
+                    <Stack.Screen name="CartScreen" component={Tabs} />
+                    <Stack.Screen name="CheckOut" component={CheckOutScreen} />
+                </Stack.Navigator>
+            </NavigationContainer>
+        </CartProvider>
+
     );
 };
